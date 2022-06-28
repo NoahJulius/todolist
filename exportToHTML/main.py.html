@@ -1,0 +1,45 @@
+<html>
+<head>
+<title>main.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6a8759;}
+.s3 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+main.py</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">tkinter </span><span class="s0">as </span><span class="s1">tk</span>
+
+<span class="s1">root = tk.Tk()</span>
+<span class="s1">root.geometry(</span><span class="s2">&quot;500x450&quot;</span><span class="s1">)</span>
+<span class="s1">root.title(</span><span class="s2">&quot;to do list&quot;</span><span class="s1">)</span>
+<span class="s1">root.config(bg= </span><span class="s2">'black'</span><span class="s1">)</span>
+
+<span class="s1">frame = tk.Frame(root)</span>
+<span class="s1">frame.pack(pady=</span><span class="s3">10</span><span class="s1">)</span>
+
+<span class="s1">tasks_list = tk.Listbox(frame</span><span class="s0">, </span><span class="s1">width=</span><span class="s3">25</span><span class="s0">, </span><span class="s1">height=</span><span class="s3">8</span><span class="s0">, </span><span class="s1">font=(</span><span class="s2">'Times'</span><span class="s0">, </span><span class="s3">18</span><span class="s1">)</span><span class="s0">,</span>
+                    <span class="s1">fg=</span><span class="s2">'#464646'</span><span class="s0">, </span><span class="s1">selectbackground=</span><span class="s2">'#333333'</span><span class="s0">, </span><span class="s1">activestyle=</span><span class="s2">'none'</span><span class="s1">)</span>
+<span class="s1">tasks_list.pack(side=tk.LEFT</span><span class="s0">, </span><span class="s1">fill=tk.BOTH)</span>
+
+<span class="s1">scroll_bar = tk.Scrollbar(frame).pack(side=tk.RIGHT</span><span class="s0">, </span><span class="s1">fill=tk.BOTH)</span>
+
+<span class="s1">tasks_list.config(yscrollcommand=scroll_bar.set)</span>
+<span class="s1">scroll_bar.config(command=tasks_list.yview)</span>
+
+<span class="s1">task_entry = tk.Entry(root</span><span class="s0">, </span><span class="s1">font=(</span><span class="s2">'Times'</span><span class="s0">, </span><span class="s3">24</span><span class="s1">))</span>
+<span class="s1">task_entry.insert(</span><span class="s3">0</span><span class="s0">, </span><span class="s2">'enter task'</span><span class="s1">)</span>
+<span class="s1">task_entry.pack(pady=</span><span class="s3">20</span><span class="s1">)</span>
+
+<span class="s1">root.mainloop()</span>
+
+</pre>
+</body>
+</html>

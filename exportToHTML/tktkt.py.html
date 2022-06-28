@@ -1,0 +1,79 @@
+<html>
+<head>
+<title>tktkt.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6a8759;}
+.s3 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+tktkt.py</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">tkinter </span><span class="s0">as </span><span class="s1">tk</span>
+<span class="s0">from </span><span class="s1">tkinter </span><span class="s0">import </span><span class="s1">messagebox</span>
+
+<span class="s1">window = tk.Tk()</span>
+<span class="s1">window.geometry(</span><span class="s2">'500x450'</span><span class="s1">)</span>
+<span class="s1">window.title(</span><span class="s2">'Todo Liste'</span><span class="s1">)</span>
+<span class="s1">window.config(bg=</span><span class="s2">'#111111'</span><span class="s1">)</span>
+
+
+<span class="s0">def </span><span class="s1">aufgabe_dazu():</span>
+    <span class="s1">aufgabe = aufgabe_eingabe.get()</span>
+
+    <span class="s0">if </span><span class="s1">aufgabe != </span><span class="s2">''</span><span class="s1">:</span>
+        <span class="s0">if </span><span class="s1">aufgabe == </span><span class="s2">'Aufgabe eingeben'</span><span class="s1">:</span>
+            <span class="s1">messagebox.showwarning(</span><span class="s2">'Error'</span><span class="s0">, </span><span class="s2">'Enter a task!'</span><span class="s1">)</span>
+        <span class="s0">else</span><span class="s1">:</span>
+            <span class="s1">aufgaben_liste.insert(tk.END</span><span class="s0">, </span><span class="s1">aufgabe)</span>
+            <span class="s1">aufgabe_eingabe.delete(</span><span class="s3">0</span><span class="s0">, </span><span class="s2">'end'</span><span class="s1">)</span>
+    <span class="s0">else</span><span class="s1">:</span>
+        <span class="s1">messagebox.showwarning(</span><span class="s2">'Error'</span><span class="s0">, </span><span class="s2">'Enter a task!'</span><span class="s1">)</span>
+
+
+<span class="s0">def </span><span class="s1">aufgabe_weg():</span>
+    <span class="s1">aufgaben_liste.delete(tk.ANCHOR)</span>
+
+
+<span class="s0">def </span><span class="s1">eingabe_entfernen(event</span><span class="s0">, </span><span class="s1">eingabe):</span>
+    <span class="s1">eingabe.delete(</span><span class="s3">0</span><span class="s0">, </span><span class="s1">tk.END)</span>
+
+
+<span class="s1">frame = tk.Frame(window)</span>
+<span class="s1">frame.pack(pady=</span><span class="s3">10</span><span class="s1">)</span>
+
+<span class="s1">aufgaben_liste = tk.Listbox(frame</span><span class="s0">, </span><span class="s1">width=</span><span class="s3">25</span><span class="s0">, </span><span class="s1">height=</span><span class="s3">8</span><span class="s0">, </span><span class="s1">font=(</span><span class="s2">'Times'</span><span class="s0">, </span><span class="s3">18</span><span class="s1">)</span><span class="s0">,</span>
+                            <span class="s1">fg=</span><span class="s2">'#464646'</span><span class="s0">, </span><span class="s1">selectbackground=</span><span class="s2">'#333333'</span><span class="s0">, </span><span class="s1">activestyle=</span><span class="s2">'none'</span><span class="s1">)</span>
+<span class="s1">aufgaben_liste.pack(side=tk.LEFT</span><span class="s0">, </span><span class="s1">fill=tk.BOTH)</span>
+
+<span class="s1">scroll_bar = tk.Scrollbar(frame)</span>
+<span class="s1">scroll_bar.pack(side=tk.RIGHT</span><span class="s0">, </span><span class="s1">fill=tk.BOTH)</span>
+
+<span class="s1">aufgaben_liste.config(yscrollcommand=scroll_bar.set)</span>
+<span class="s1">scroll_bar.config(command=aufgaben_liste.yview)</span>
+
+<span class="s1">aufgabe_eingabe = tk.Entry(window</span><span class="s0">, </span><span class="s1">font=(</span><span class="s2">'Times'</span><span class="s0">, </span><span class="s3">24</span><span class="s1">))</span>
+<span class="s1">aufgabe_eingabe.insert(</span><span class="s3">0</span><span class="s0">, </span><span class="s2">'enter task'</span><span class="s1">)</span>
+<span class="s1">aufgabe_eingabe.bind(</span><span class="s2">'&lt;Button-1&gt;'</span><span class="s0">, lambda </span><span class="s1">event: eingabe_entfernen(event</span><span class="s0">, </span><span class="s1">aufgabe_eingabe))</span>
+<span class="s1">aufgabe_eingabe.pack(pady=</span><span class="s3">20</span><span class="s1">)</span>
+
+<span class="s1">button_frame = tk.Frame(window)</span>
+<span class="s1">button_frame.pack(pady=</span><span class="s3">20</span><span class="s1">)</span>
+
+<span class="s1">aufgabe_dazu_btn = tk.Button(button_frame</span><span class="s0">, </span><span class="s1">text=</span><span class="s2">'add task'</span><span class="s0">, </span><span class="s1">font=(</span><span class="s2">'Times'</span><span class="s0">, </span><span class="s3">14</span><span class="s1">)</span><span class="s0">,</span>
+                             <span class="s1">bg=</span><span class="s2">'green'</span><span class="s0">, </span><span class="s1">fg=</span><span class="s2">'green'</span><span class="s0">, </span><span class="s1">padx=</span><span class="s3">20</span><span class="s0">, </span><span class="s1">pady=</span><span class="s3">10</span><span class="s0">, </span><span class="s1">command=aufgabe_dazu)</span>
+<span class="s1">aufgabe_dazu_btn.pack(fill=tk.BOTH</span><span class="s0">, </span><span class="s1">expand=</span><span class="s0">True, </span><span class="s1">side=tk.LEFT)</span>
+
+<span class="s1">aufgabe_weg_btn = tk.Button(button_frame</span><span class="s0">, </span><span class="s1">text=</span><span class="s2">'task clear'</span><span class="s0">, </span><span class="s1">font=(</span><span class="s2">'Times'</span><span class="s0">, </span><span class="s3">14</span><span class="s1">)</span><span class="s0">,</span>
+                             <span class="s1">bg=</span><span class="s2">'red'</span><span class="s0">, </span><span class="s1">fg=</span><span class="s2">'red'</span><span class="s0">, </span><span class="s1">padx=</span><span class="s3">20</span><span class="s0">, </span><span class="s1">pady=</span><span class="s3">10</span><span class="s0">, </span><span class="s1">command=aufgabe_weg)</span>
+<span class="s1">aufgabe_weg_btn.pack(fill=tk.BOTH</span><span class="s0">, </span><span class="s1">expand=</span><span class="s0">True, </span><span class="s1">side=tk.LEFT)</span>
+
+<span class="s1">window.mainloop()</span></pre>
+</body>
+</html>
